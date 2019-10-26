@@ -11,6 +11,7 @@ from colcon_core.event.job import JobStarted
 from colcon_core.event.output import StderrLine
 from colcon_core.event_handler import EventHandlerExtensionPoint
 from colcon_core.plugin_system import satisfies_version
+
 from gvanim import Animation
 from gvanim import gif
 from gvanim import render
@@ -103,5 +104,6 @@ class GraphvizAnimEventHandler(EventHandlerExtensionPoint):
         if not self._any_started:
             return
         graphs = self._animation.graphs()
-        files = render(graphs, 'graphviz_anim_build', fmt='gif', size=1920)
-        gif(files, 'graphviz_anim_build', delay=50)
+        size = 1920
+        files = render(graphs, 'graphviz_anim_build', fmt='gif', size=size)
+        gif(files, 'graphviz_anim_build', delay=50, size=size)
